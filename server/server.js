@@ -27,6 +27,14 @@ app.post('/todos', (req, res) => {
   });
 });
 
+app.get('/todos', (req,res)=> {
+  Todo.find().then((todos)=> {
+    res.send({todos})
+  }, (e)=> {
+    res.status(400).send(e);
+  })
+})
+
 app.listen(3000, () => {
   console.info('Started on port 3000');
 });
@@ -34,14 +42,6 @@ app.listen(3000, () => {
 
 //Export app to test it..
 module.exports = {app};
-
-
-//
-//
-// mongoose.Promise = global.Promise;
-//
-// mongoose.connect('mongodb://localhost:27017/TodoApp', {useMongoClient: true} );
-
 
 
 
