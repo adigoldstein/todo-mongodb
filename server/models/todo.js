@@ -17,15 +17,13 @@ var Todo = mongoose.model('Todo', {
   }
 });
 
-
-
 module.exports = {Todo};
 
 //exapmle of adding new todo:
+//
 // var newTodo = new Todo({
 //   text: '    Edit this file'
 // });
-//
 //
 // newTodo.save().then((doc)=> {
 //   console.info('Todo saved!!' ,doc);
