@@ -8,9 +8,9 @@ const {Todo} = require('./../models/todo');
 
 const todos = [
   {_id: new ObjectID,
-  text: 'YES YES YES'},
+  text: 'Dummy todo 1'},
   {_id: new ObjectID,
-    text: 'TestS'}
+    text: 'Dummy todo 2'}
 ];
 
 beforeEach((done) => {
@@ -29,6 +29,7 @@ describe('POST/todos', () => {
       .send({text})
       .expect(200)
       .expect((res) => {
+      console.info(res.body);
         expect(res.body.text).toBe(text)
       })
       .end((err, res) => {
@@ -37,7 +38,7 @@ describe('POST/todos', () => {
         }
 
         Todo.find().then((todos) => {
-          expect(todos.length).toBe(1);
+          expect(todos.length).toBe(3);
           expect(todos[0].text).toBe(text);
           done();
         }).catch((e) => done(e))
@@ -56,7 +57,7 @@ describe('POST/todos', () => {
         }
 
         Todo.find().then((todos) => {
-          expect(todos.length).toBe(0);
+          expect(todos.length).toBe(2);
           done();
         }).catch((e) => done(e))
       })
@@ -66,7 +67,7 @@ describe('POST/todos', () => {
 
 describe('GET /todos/:id', ()=> {
 
-  it('should rerurn todo doc',(done)=> {
+  it('should return todo doc',(done)=> {
 
     request(app)
       .get(`/todos/${todos[0]._id.toHexString()}`)
